@@ -1,9 +1,10 @@
 import React from 'react';
 import { useFind, useSubscribe } from 'meteor/react-meteor-data';
-import { LinksCollection } from '../api/links';
+import { CurrentStore } from '../api/store';
+import { HistoryStore } from '../api/store'
 
 export const Info = () => {
-  const isLoading = useSubscribe('links');
+  const isLoading = useSubscribe('history');
   const links = useFind(() => LinksCollection.find());
 
   if(isLoading()) {
