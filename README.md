@@ -1,5 +1,7 @@
 # AI Tool for Operating a Backend System with Natural Langauge
 
+This was created for the Luddy Fall 2024 Hackathon by Lincoln Firks, Dhruv Chavan, Eric Li, and Antonio Lee
+
 ## Demo
 
 [Youtube Demo Link](https://www.youtube.com/watch?v=_onq2kuiPtU)
