@@ -74,7 +74,7 @@ creating or updating a key.
 
 This project runs the recently released Meteor 3.0
 
-Navigate into the Meteor project (app-backend).
+Navigate into the Meteor project (this repo).
 If you do not currently have Meteor 3.0 installed, run this command to install Meteor on Windows, Linux and OS X.
 
 ```bash
@@ -108,4 +108,4 @@ You can access the web application at http://localhost:3000 in the browser by de
 > ```
 > will run the web application on port 5000 and the MongoDB database on port 5001
 
-You will also need to make a keys.js file in the server directory with exported varibles API_KEY and GEMINI_MODEL
+You will also need to make a keys.js file in the server directory with exported varibles API_KEY and GEMINI_MODEL in order for the gemini api to work
