@@ -11,7 +11,7 @@ operation. If a user does not wish to confirm, they can enter
 another operation. If a user does confirm the operation, the
 database will be updated accordingly, and the log displaying the
 recent operations will be updated.
-Accomplishments:
+## Accomplishments
 Despite our minimal experience with full stack development,
 we were able to complete a full stack application within 48
 hours for a case that we knew was going to be a tough challenge.
@@ -30,6 +30,7 @@ these challenges by delegating tasks to team members that had
 some experience/interest in that aspect of the project. We also
 leveraged ChatGPT extensively to maximize our learning and patch
 our inexperience.
+
 Additionally, we ran into countless problems when trying to
 get Gemini to interpret the prompt correctly, when trying to get
 the UI to look how we wanted it to, and also when trying to
@@ -40,8 +41,10 @@ different branches. On the flip side, Github allowed us to
 divide and conquer and also retrieve backups when we ran into
 unsolvable problems with the project’s dependencies.
 
+## Backend Design
 
-[Diagram]([https://github.com/username](https://docs.google.com/drawings/d/15kg1uQtCE8bQ4xWPpDn_qZolx0QMya2PCQwcKzWexiI/edit))
+[Diagram](https://docs.google.com/drawings/d/15kg1uQtCE8bQ4xWPpDn_qZolx0QMya2PCQwcKzWexiI/edit)
+
 
 ## Sample Prompt Usage
 
