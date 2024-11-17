@@ -7,8 +7,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const genAI = new GoogleGenerativeAI("AIzaSyAN4lJ9AQZZucP6diJxtGjx4l7Lk6rVpyQ");
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b"});
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const model = genAI.getGenerativeModel({ model: process.env.GEMINI_KEY});
 
 Meteor.methods({
     async GetJSON(userPrompt) {
