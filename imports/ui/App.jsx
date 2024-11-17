@@ -15,7 +15,6 @@ export const App = () => {
     key: '-',
     value: '-'
   });
-  console.log(result);
 
   const createError = (errorMessage) => {
     setError(true);
@@ -25,16 +24,8 @@ export const App = () => {
   const [isHelpVisible, setIsHelpVisible] = useState(false);
   const helpDialogRef = useRef(null)
   const toggleHelp = () => {
-    console.log('Help button clicked');
-    console.log(isHelpVisible);
+
     setIsHelpVisible(!isHelpVisible);
-    if (helpDialogRef.current) {
-      if (isHelpVisible) {
-        console.log('Showing help dialog');
-      } else {
-        console.log('hiding help dialog');
-      }
-    }
   }
 return (
     <div className='body'>
@@ -43,7 +34,7 @@ return (
             <h2>Hi, I'm Duke!</h2>
             <p className='dukedennis'>I am a natural language processing model that can help you
             operate a backend system by managing a database.
-            I can help you create, read, update, and delete data!
+            I can help you create, read, update, and delete (CRUD) data!
             When you enter in data for me to store,
             we suggest that you enter what you want to do with a key name and its corresponding value,
             as well as your intented action.
@@ -54,16 +45,16 @@ return (
 
 
             <h3>Create</h3>
-            <p>Example: "Create a key 'color' with its value as 'cyan'."</p>
+            <p>Example: "Create a new key for movie as Jaws"</p>
         
             <h3>Read</h3>
-            <p>Example: "What is the value of the key 'color'?"</p>
+            <p>Example: "Show me movie"</p>
         
             <h3>Update</h3>
-            <p>Example: "Update key 'color' with value 'magenta'"</p>
+            <p>Example: "Update movie to The Meg"</p>
         
             <h3>Delete</h3>
-            <p>Example: "Delete key 'color'</p>
+            <p>Example: "Delete movie</p>
         </div>
 
       )}
@@ -92,7 +83,6 @@ return (
           <div className='confirm-container'>
             <p>Confirm?</p>
             <button onClick={() => {
-                console.log("Clicked")
                 Meteor.call("CallCRUD",result);
             }} className='confirm' aria-label='confirm button'>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

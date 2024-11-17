@@ -19,10 +19,8 @@ export const Input = ({setError ,createError, setResult}) => {
     e.preventDefault(); // Prevent form submission from refreshing the page
     let response;
     if (value.trim()) {
-      console.log('Submitted:', value); // Replace this with your desired functionality
       try {
         response = await getJSON(value); // Wait for the response to be returned
-        console.log('Response:', response); // Now you have the response value
 
         // Use setResult to update the state or perform any other actions
         setResult(response);
@@ -36,7 +34,6 @@ export const Input = ({setError ,createError, setResult}) => {
       } else {
         setError(false)
       }
-      console.log(response)
       setResult(response)
       setValue(''); // Clear the input after submission
     }

@@ -52,7 +52,8 @@
     max-height: 1rem;
     max-width: 5rem;
     padding: 5px;
-    overflow: scroll;
+    word-break: break-word; /* Optional, ensures word wrapping */
+    
    }
    h3{
     padding: 0px;

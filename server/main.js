@@ -3,18 +3,15 @@ import { CurrentStore } from '/imports/api/store';
 import { HistoryStore } from '/imports/api/store';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prePrompt } from './prompt';
-import dotenv from 'dotenv';
-dotenv.config();
+import { GEMINI_MODEL, API_KEY } from './keys';
 
-
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-const model = genAI.getGenerativeModel({ model: process.env.GEMINI_KEY});
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ model: GEMINI_MODEL});
 
 Meteor.methods({
     async GetJSON(userPrompt) {
         const fullPrompt = prePrompt + userPrompt;
         const result = await model.generateContent(fullPrompt);
-        console.log(result.response.text());
         let parsed = {
             error: "Error when parsing:",
             method: "-",
@@ -25,19 +22,15 @@ Meteor.methods({
             const match = result.response.text().match(/```json\s*([\s\S]*?)\s*```/);
             if (match && match[1]) {
                 parsed = JSON.parse(match[1]);
-                console.log(`Method: ${parsed.method}`);
-                console.log(`Key: ${parsed.key}`);
-                console.log(`Value: ${parsed.value}`);
             } else {
                 console.error('No JSON found in the input');
             }
         } catch(e) {
-            console.log(e)
+            console.error(e)
             return parsed
                 
             
         }
-        console.log(parsed)
 
         if (parsed.error) {
             parsed.method = '-';
@@ -48,25 +41,26 @@ Meteor.methods({
 
         const validMethods = ['update', 'read', 'create', 'delete'];
 
-        // if (!parsed.hasOwnProperty(method) || !parsed.hasOwnProperty(key) || !parsed.hasOwnProperty(value) || !validMethods.includes(parsed.method)) {
-        //     parsed.method = '-';
-        //     parsed.key = '-';
-        //     parsed.value = '-';
-        //     parsed.error = ("LLM JSON response was invalid");
-        // }
-        console.log(parsed)
+        if (parsed && typeof parsed === 'object') {
+            if (!parsed.hasOwnProperty('method') || 
+                !parsed.hasOwnProperty('key') || 
+                !parsed.hasOwnProperty('value') || 
+                !validMethods.includes(parsed.method))  {
+            parsed.method = '-';
+            parsed.key = '-';
+            parsed.value = '-';
+            parsed.error = ("LLM JSON response was invalid");
+        }
         return parsed;
+        }
     },
 
     CallCRUD(result) {
 
-        console.log("CALLcrud")
-        console.log(result)
-
         if (!result.method) {
-            throw new Meteor.Error("invalid-arguments", "Method is required.");
+            console.error( "Method is required.");
         }
-        if (!result.key || !result.value) throw new Meteor.Error("invalid-arguments", "Key and value are required.");
+        if (!result.key || !result.value) console.error("Key and value are required.");
 
         const method = result.method;
         
@@ -80,21 +74,16 @@ Meteor.methods({
             Read(result.key);
         }
     }
-
-
-
 });
 
 async function Create(key, value ) {
-    console.log("Creating")
-    console.log(key, value)
-    if (!key || !value) throw new Meteor.Error("invalid-arguments", "Key and value are required.");
+    if (!key || !value) console.error("invalid-arguments", "Key and value are required.");
     const cursor = await CurrentStore.findOneAsync({ key});
     if (cursor) {
         console.log(cursor);
-      throw new Meteor.Error("invalid-arguments", "Document with this key exists already.");
+        console.error("Document with this key exists already.");
     }
-    // Create key color with value: red
+
     const time = new Date()
     let doc = {
       key,
@@ -110,12 +99,11 @@ async function Create(key, value ) {
 }
 
 async function Update( key, value ) {
-    console.log("Updating")
-    console.log(key, value)
-    if (!key || !value) throw new Meteor.Error("invalid-arguments", "Key and value are required.");
+    if (!key || !value) console.error("invalid-arguments", "Key and value are required.");
     const cursor = await CurrentStore.findOneAsync({ key });
     if (!cursor) {
-      throw new Meteor.Error("invalid-arguments", "No document with this key");
+      console.error("No document with this key");
+      return;
     }
     const time = new Date();
     const updatedDoc = {
@@ -127,7 +115,6 @@ async function Update( key, value ) {
 }
 
 async function Read(key) {
-    console.log("Reading")
     const cursor = await CurrentStore.findOneAsync({ key });
     if (!cursor) {
       return;
@@ -141,7 +128,8 @@ async function Delete(key) {
     console.log("Deleting")
     const cursor = await CurrentStore.findOneAsync({ key });
     if (!cursor) {
-      throw new Meteor.Error("invalid-arguments", "No document with this key");
+        console.error("No document with this key");
+        return;
     }
 
     CurrentStore.removeAsync({key});
