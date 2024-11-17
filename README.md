@@ -1,4 +1,4 @@
-# AI Tool for Operating a Backend System with Natural Langauge
+# DUKE: The AI Tool for Operating a Backend System with Natural Language
 
 This was created for the Luddy Fall 2024 Hackathon by Lincoln Firks, Dhruv Chavan, Eric Li, and Antonio Lee
 
