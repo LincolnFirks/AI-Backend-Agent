@@ -40,7 +40,31 @@ return (
     <div className='body'>
       {isHelpVisible && (
         <div className="help-dialog" ref={helpDialogRef}>
-          <p>Help</p>
+          <h2>Hi, I'm Duke!</h2>
+          <p>I am a natural language processing model that can help you
+            operate a backend system by managing a database.
+            I can help you create, read, update, and delete data!
+            When you enter in data for me to store,
+            we suggest that you enter what you want to do with a key name and its corresponding value,
+            as well as your intented action.
+          </p>
+          
+          <p>If you're still not sure what to tell me, try following some of our suggested examples!
+            Don't worry if you make a mistake, we'll let you know with an error, just try to be as specfic as possible.
+            by signifying with dashes.
+          </p>
+
+          <h3>Create</h3>
+          <p>Example: "Create a key 'color' with its value as 'cyan'."</p>
+          
+          <h3>Read</h3>
+          <p>Example: "What is the value of the key 'color'?"</p>
+          
+          <h3>Update</h3>
+          <p>Example: "Update key 'color' with value 'magenta'"</p>
+          
+          <h3>Delete</h3>
+          <p>Example: "Delete key 'color'</p>
         </div>
       )}
     <div className='header'>
