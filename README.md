@@ -49,13 +49,13 @@ unsolvable problems with the project’s dependencies.
 ## Sample Prompt Usage
 
 ### Create:
-- “Create a key color with value red”
+- “Create a new key color with value red”
 - “Make a new entry color with value red”
 - “Add a new key for color red”
 ### Update:
 - “Update the key color with value blue”
 - “Set the key color with value blue”
-- “Make entry color with value blue”
+- “Make entry color have the value blue”
 ### Read:
 - “What is the key color’s value?”
 - “What is the color’s value?”
