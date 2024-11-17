@@ -1,5 +1,9 @@
 # AI Tool for Operating a Backend System with Natural Langauge
 
+## Demo
+
+[Youtube Demo Link](https://www.youtube.com/watch?v=_onq2kuiPtU)
+
 ## Project Description
 Duke (delete update kreate examine) is an AI backend agent
 that enables users to do create, read, update, and delete (CRUD)
