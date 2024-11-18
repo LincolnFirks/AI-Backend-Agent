@@ -68,7 +68,7 @@ unsolvable problems with the project’s dependencies.
 - “Tell me what color is the key color?”
 ### Delete:
 - “Delete the key color”
-- Get rid of the key color”
+- "Get rid of the key color”
 - “Remove color”
 ### Limitations:
 - Due to the inconsistency of AI (Gemini), the user has to be very clear with key
